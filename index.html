@@ -10,16 +10,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* TEMA PADRÃO: ESCURO */
         :root {
             --primary: #4DA8DA;
             --secondary: #6FCF97;
             --secondary-hover: #5abd85;
+            --text-dark: #f0f0f0;
+            --text-light: #b0b0b0;
+            --bg-light: #121212;
+            --white: #1e1e1e;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --hero-bg-start: rgba(18, 18, 18, 0.85);
+            --hero-bg-end: rgba(18, 18, 18, 0.95);
+            --footer-bg: #0a0a0a;
+            --depoimentos-bg: #1e1e1e;
+            --depoimentos-text: var(--text-dark);
+            --depoimentos-card: rgba(255, 255, 255, 0.05);
+        }
+
+        /* TEMA ALTERNATIVO: CLARO */
+        body.light-theme {
             --text-dark: #333333;
             --text-light: #666666;
             --bg-light: #f9fbfd;
             --white: #ffffff;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            --transition: all 0.3s ease;
+            --border-color: rgba(77, 168, 218, 0.1);
+            --hero-bg-start: rgba(249, 251, 253, 0.85);
+            --hero-bg-end: rgba(249, 251, 253, 0.95);
+            --footer-bg: #2c3e50;
+            --depoimentos-bg: var(--primary);
+            --depoimentos-text: #ffffff;
+            --depoimentos-card: rgba(255, 255, 255, 0.1);
         }
 
         * {
@@ -38,6 +62,7 @@
             background-color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         a {
@@ -69,7 +94,7 @@
 
         .btn-primary {
             background-color: var(--secondary);
-            color: var(--white);
+            color: #ffffff;
             box-shadow: 0 4px 15px rgba(111, 207, 151, 0.3);
         }
 
@@ -77,6 +102,7 @@
             background-color: var(--secondary-hover);
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(111, 207, 151, 0.4);
+            color: #ffffff;
         }
 
         /* Header */
@@ -96,6 +122,35 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .theme-toggle {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-weight: 600;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(77, 168, 218, 0.3);
         }
 
         .logo {
@@ -119,8 +174,16 @@
             transition: var(--transition);
         }
 
+        .nav-links a.btn-primary {
+            color: #ffffff;
+        }
+
         .nav-links a:hover {
             color: var(--primary);
+        }
+        
+        .nav-links a.btn-primary:hover {
+            color: #ffffff;
         }
 
         .mobile-menu-btn {
@@ -134,11 +197,12 @@
         .hero {
             padding-top: 120px;
             padding-bottom: 80px;
-            background: linear-gradient(rgba(249, 251, 253, 0.85), rgba(249, 251, 253, 0.95)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            background: linear-gradient(var(--hero-bg-start), var(--hero-bg-end)), url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             min-height: 100vh;
             display: flex;
             align-items: center;
             text-align: center;
+            transition: var(--transition);
         }
 
         .hero-content {
@@ -180,6 +244,7 @@
         .servicos {
             padding: 80px 0;
             background: var(--white);
+            transition: var(--transition);
         }
 
         .services-grid {
@@ -195,7 +260,7 @@
             text-align: center;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            border: 1px solid rgba(77, 168, 218, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .service-card:hover {
@@ -223,6 +288,7 @@
         .diferenciais {
             padding: 80px 0;
             background: var(--bg-light);
+            transition: var(--transition);
         }
 
         .diff-grid {
@@ -267,6 +333,8 @@
         /* Galeria */
         .galeria {
             padding: 80px 0;
+            background: var(--white);
+            transition: var(--transition);
         }
 
         .gallery-grid {
@@ -297,13 +365,14 @@
         /* Depoimentos */
         .depoimentos {
             padding: 80px 0;
-            background: var(--primary);
-            color: var(--white);
+            background: var(--depoimentos-bg);
+            color: var(--depoimentos-text);
+            transition: var(--transition);
         }
 
         .depoimentos .section-title h2,
         .depoimentos .section-title p {
-            color: var(--white);
+            color: var(--depoimentos-text);
         }
 
         .testimonials-grid {
@@ -313,10 +382,11 @@
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--depoimentos-card);
             padding: 30px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
         }
 
         .testimonial-card p {
@@ -347,6 +417,7 @@
             padding: 100px 0;
             text-align: center;
             background: var(--bg-light);
+            transition: var(--transition);
         }
 
         .cta-box {
@@ -356,6 +427,8 @@
             box-shadow: var(--shadow);
             max-width: 800px;
             margin: 0 auto;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
         }
 
         .cta-box h2 {
@@ -372,9 +445,10 @@
 
         /* Footer */
         footer {
-            background: #2c3e50;
-            color: var(--white);
+            background: var(--footer-bg);
+            color: #ffffff;
             padding: 60px 0 20px;
+            transition: var(--transition);
         }
 
         .footer-grid {
@@ -413,6 +487,7 @@
             align-items: center;
             border-radius: 50%;
             transition: var(--transition);
+            color: #ffffff;
         }
 
         .social-links a:hover {
@@ -462,6 +537,25 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .logo-area {
+                gap: 10px;
+            }
+            
+            .theme-toggle span {
+                display: none; /* Esconde o texto no mobile para não ocupar muito espaço */
+            }
+            
+            .theme-toggle {
+                padding: 10px;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
             .nav-links {
                 position: absolute;
                 top: 100%;
@@ -497,9 +591,15 @@
     <!-- Header -->
     <header id="header">
         <div class="container nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-paw"></i> Amigo Fiel
-            </a>
+            <div class="logo-area">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">
+                    <i class="fa-solid fa-sun"></i> <span>Claro</span>
+                </button>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-paw"></i> Amigo Fiel
+                </a>
+            </div>
+            
             <div class="mobile-menu-btn" id="mobile-menu-btn">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -610,7 +710,7 @@
                     <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gatinho brincando">
                 </div>
                 <div class="gallery-item fade-in">
-                    <img src="https://images.unsplash.com/photo-1537151608804-ea6f1cb528ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gato relaxando">
+                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Gato relaxando" referrerPolicy="no-referrer">
                 </div>
             </div>
         </div>
@@ -715,6 +815,35 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Theme Switcher (Dark by default, toggles to Light Mode)
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const themeText = themeToggleBtn.querySelector('span');
+
+        // Verify if user explicitly saved 'light' theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            themeText.textContent = 'Escuro';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+            
+            if (document.body.classList.contains('light-theme')) {
+                // If light theme is active, save 'light' and show option to go 'dark'
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                themeText.textContent = 'Escuro';
+            } else {
+                // Return to default dark theme
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                themeText.textContent = 'Claro';
+            }
         });
 
         // Change Header Style on Scroll
